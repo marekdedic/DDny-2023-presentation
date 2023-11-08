@@ -177,110 +177,13 @@ based on the meta-model
 		\item Experimental validation of meta-model generalization capability
 		\item Evaluated importance of graph properties and their impact on GNN performance
 		\item Very promissing results of hyper-parameter search method
+		\item More details can be found in the paper: \cite{prochazka_which_2023}
 	\end{itemize}
 \end{frame}
 
-%\begin{frame}{Motivation}
-%	\begin{itemize}
-%		\item In Cisco, we perform node classification on large graphs to identify malicious domains
-%		\begin{itemize}
-%			\item Currently simple, scalable models
-%		\end{itemize}
-%		\item State of the art: GNNs
-%		\begin{itemize}
-%			\item Powerful but computationally demanding
-%			\item Do not scale to our data (at reasonable cost)
-%		\end{itemize}
-%		\item Suggested solution: compressing the input graph
-%	 \end{itemize}
-%\end{frame}
-%
-%\begin{frame}{Main idea}
-%	 \input{images/coarsening-illustration}
-%\end{frame}
-%
-%\begin{frame}{Details}
-%	 \begin{itemize}
-%		 \item Base model $\to$ posterior for all nodes
-%		 \item Similarity measure
-%		 \item Edge contraction $\to$ graph sequence
-%		 \item GNN on each graph with label propagation
-%	 \end{itemize}
-%	 \vspace{1cm}
-%	 \scalebox{0.75}{\input{images/graph-sequence}}
-%\end{frame}
-%
-%\begin{frame}{Complexity performance trade-off}
-%	\input{images/complexity-performance}
-%\end{frame}
-%
-%\begin{frame}{Complexity}
-%	\begin{itemize}
-%		\item Usually time \& memory complexity
-%		 \item In business, time translates to cost
-%		 \begin{itemize}
-%			 \item More interpretable
-%			 \item Monthly budget \$100, AWS EKS costs \$0.33/hour
-%			 \item Therefore daily run can take 10 hours $\to$ select graph size accordingly
-%		 \end{itemize}
-%	 \end{itemize}
-%\end{frame}
-%
-%\begin{frame}
-%	\frametitle{Edge contraction induced hierarchical tree}
-%	\centerline{\scalebox{0.75}{\input{images/graph-seq-uncover}}}
-%	\centerline{\scalebox{0.75}{\input{images/tree-clustering}}}
-%\end{frame}
-%
-%\begin{frame}
-%	\frametitle{Shared prediction induced performance upper bound}
-%	 \centering{\scalebox{1.2}{\input{images/upper-bound}}}
-%\end{frame}
-%
-%\begin{frame}{Experiment Setup}
-%	 \begin{itemize}
-%		 \item Base model: logistic regression
-%		 \item Similarity measure: KL divergence
-%		 \item GNN: 2-layer GCN
-%		 \item Dataset: Cora
-%	 \end{itemize}
-%\end{frame}
-%
-%\begin{frame}{Comparison of Performance Given by Probability Similarities}
-%	 \input{images/cora-similarities}
-%\end{frame}
-%
-%\begin{frame}{Conclusions \& Future Work}
-%	 \begin{itemize}
-%		 \item Conclusions
-%		 \begin{itemize}
-%			 \item Performance-complexity trade-off
-%			 \begin{itemize}
-%				 \item Ability to set cost limit for running the algorithm
-%			 \end{itemize}
-%			 \item Hierarchical tree as a byproduct
-%			 \item Computationally cheap upper bound
-%			 \item Transfer learning: like using other hyperparameters
-%			 \begin{itemize}
-%				 \item Assuming the data does not change significantly
-%			 \end{itemize}
-%		 \end{itemize}
-%		 
-%		 \item Future Work
-%		 \begin{itemize}
-%			 \item Run on more datasets
-%			 \item Run on Cisco datasets
-%			 \item Investigate the validity of many ad-hoc choices in the algorithm
-%		 \end{itemize}
-%		 
-%	 \item More details can be found in the paper: \cite{prochazka_scalable_2022}
-%	 \item My related work presented at ECML: \cite{dedic_adaptive_2022}
-%	 \end{itemize}
-%\end{frame}
-
-%\begin{frame}[shrink=12]{Bibliography}
-	%\printbibliography
-%\end{frame}
+\begin{frame}{Bibliography}
+	\printbibliography
+\end{frame}
 
 \begin{frame}
 	\titlepage
