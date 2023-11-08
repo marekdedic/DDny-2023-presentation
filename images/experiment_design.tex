@@ -1,0 +1,169 @@
+\begin{tikzpicture}[scale=0.9]
+\def\dist{1.5cm}
+\tikzset{node distance=\dist, minimum size=1ex}
+	\tikzset{classA/.style={circle, draw=black, fill=blue!20!yellow}}
+	\tikzset{classB/.style={circle, draw=black, fill=blue!20}}
+	\tikzset{classC/.style={circle, draw=black, fill=yellow!20!red}}
+	\tikzset{class1/.style={circle, draw=black, fill=red!50}}
+	\tikzset{class0/.style={circle, draw=black, fill=white}}
+	\tikzset{desc/.style={rectangle, anchor=west, text width=2.5cm,minimum height=1cm,minimum width=2.8cm, rounded corners=1ex, align=center}}
+
+	\newcommand{\drawgraph}[9]{
+\begin{scope}[xshift=#1, yshift=#2]
+\node[#3] (#9A1) {};
+\node[#4, right of=#9A1] (#9A2) {};
+\node[#5, below of=#9A1] (#9B1) {};
+\node[#6, right of=#9A2] (#9B2) {};
+\node[#7, below of=#9A2] (#9C1) {};
+\node[#8, below of=#9B2] (#9C2) {};
+\draw [-] (#9A1) -- (#9A2);
+\draw [-] (#9A1) -- (#9B1);
+\draw [-] (#9B1) -- (#9C1);
+\draw [-] (#9C1) -- (#9B2);
+\draw [-] (#9B2) -- (#9C2);
+\draw [-] (#9A2) -- (#9B2);
+\end{scope}
+	}
+
+\drawgraph{0cm}{0cm}{classA}{classA}{classB}{classB}{classC}{classC}{base}
+\drawgraph{6cm}{3cm}{class1}{class1}{class0}{class0}{class0}{class0}{task1}
+\drawgraph{6cm}{0cm}{class0}{class0}{class1}{class1}{class0}{class0}{task2}
+\drawgraph{6cm}{-3cm}{class0}{class0}{class0}{class0}{class1}{class1}{task3}
+\drawgraph{13cm}{6.2cm}{class1}{class1}{class0}{class0}{class0}{class0}{task1par1}
+\drawgraph{13cm}{3cm}{class1}{class1}{class0}{class0}{class0}{class0}{task1par2}
+\drawgraph{13cm}{-3cm}{class0}{class0}{class0}{class0}{class1}{class1}{task3parN}
+
+\node[above of=task1par1A1, node distance=2ex] {\small{[0.2, 0.8]}};
+\node[above of=task1par1A2, node distance=2ex] {\small{[0.1, 0.9]}};
+\node[below of=task1par1B1, node distance=2ex] {\small{[0.6, 0.4]}};
+\node[above of=task1par1B2, node distance=2ex] {\small{[0.7, 0.3]}};
+\node[below of=task1par1C1, node distance=2ex] {\small{[0.9, 0.1]}};
+\node[below of=task1par1C2, node distance=2ex] {\small{[0.8, 0.2]}};
+
+\node[above of=task1par2A1, node distance=2ex] {\small{[0.1, 0.9]}};
+\node[above of=task1par2A2, node distance=2ex] {\small{[0.1, 0.9]}};
+\node[below of=task1par2B1, node distance=2ex] {\small{[0.5, 0.5]}};
+\node[above of=task1par2B2, node distance=2ex] {\small{[0.6, 0.4]}};
+\node[below of=task1par2C1, node distance=2ex] {\small{[0.7, 0.3]}};
+\node[below of=task1par2C2, node distance=2ex] {\small{[0.7, 0.3]}};
+
+\node[above of=task3parNA1, node distance=2ex] {\small{[0.6, 0.4]}};
+\node[above of=task3parNA2, node distance=2ex] {\small{[0.7, 0.3]}};
+\node[below of=task3parNB1, node distance=2ex] {\small{[0.6, 0.4]}};
+\node[above of=task3parNB2, node distance=2ex] {\small{[0.7, 0.3]}};
+\node[below of=task3parNC1, node distance=2ex] {\small{[0.4, 0.6]}};
+\node[below of=task3parNC2, node distance=2ex] {\small{[0.5, 0.5]}};
+
+\draw[->, thick, shorten >=1ex, shorten <=1ex] (baseB2) -- (task1B1) node [pos=0.5, above, sloped] {\small{task 1}};
+\draw[->, thick, shorten >=1ex, shorten <=1ex] ([yshift=-0.5cm] baseB2.east) -- ([yshift=-0.5cm] task2A1.west) node [pos=0.5, above, sloped] {\small{task 2}};
+\draw[->, thick, shorten >=1ex, shorten <=1ex] (baseC2) -- (task3A1) node [pos=0.5, above, sloped] {\small{task 3}};
+\draw[->, thick, shorten >=2ex, shorten <=1ex] (task1B2) -- ([yshift=2ex] task1par1B1.west) node [pos=0.5, above, sloped] {\small{setup 1}};
+\draw[->, thick, shorten >=1ex, shorten <=1ex] ([yshift=-0.5cm] task1B2.east) -- ([yshift=-0.5cm] task1par2A1.west) node [pos=0.5, above, sloped] {\small{setup 2}};
+\draw[->, thick, shorten >=2ex, shorten <=1ex] ([yshift=-0.5cm] task3B2.east) -- ([yshift=-0.5cm] task3parNA1.west) node [pos=0.5, above, sloped] {\small{setup M}};
+
+\draw[dotted, line width=3pt, shorten >=5ex, shorten <=5ex] (task1par2C1) -- (task3parNA2);
+
+
+%\node[rounded corners=1ex, fill=yellow!20, align=center] at (0, -6)  {\small{General}\\ \small{Graph Properties}};
+%\node[rounded corners=1ex, fill=cyan!20, anchor=west, align=center] at (4, -6)  {\small{Task Specific} \\ \small{Graph Properties}};
+%\node[desc, fill=yellow!20] at (0, 7.5)  {\small{basic graph properties}};
+%\node[desc, fill=orange!20] at (6, 7.5)  {\small{task specific properties}};
+%\node[desc, fill=green!20] at (9.5, 7.5)  {\small{GNN hyper-parameters}};
+%\node[desc, fill=blue!20] at (13, 7.5)  {\small{GNN performance}};
+
+\uncover<1>{
+    \node at (2, 6.5) {
+    \begin{tabular}{lrrr}
+        \toprule
+        Dataset   & \# Classes & \# Nodes & \# Edges  \\
+        \midrule
+        ArXiv     & 40         & 169 343  & 2 315 598 \\
+        Flickr    & 7          & 89 250   & 899 756   \\
+        Computers & 10         & 13 752   & 491 722   \\
+        Pubmed    & 3          & 19 717   & 88 648    \\
+        DBLP      & 4          & 17 716   & 105 734   \\
+        Squirrel  & 5          & 5 201    & 396 846   \\
+        Cora      & 70         & 19 793   & 126 842   \\
+        \bottomrule
+    \end{tabular}
+    };
+}
+
+\uncover<2>{
+    \node at (4, 7.5) {
+    \begin{tabular}{p{5cm}ccc}
+        \toprule
+        Graph Dataset Property & \multicolumn{3}{c}{Awareness}   \\
+        \cmidrule(l){2-4}
+                               & Task   & Structure & Attributes \\
+        \midrule
+        Node count             & No     & No        & No         \\
+        Class ratio            & Yes    & No        & No         \\
+        Number of components   & No     & Yes       & No         \\
+        Attribute similarity   & No     & Yes       & Yes        \\
+        \centerline{\vdots}    & \vdots & \vdots & \vdots        \\
+        \bottomrule
+    \end{tabular}
+    };
+}
+
+
+\uncover<3>{
+    \node[fill=green!20] at (8, 7) {
+\begin{tabular}{lr}
+        \toprule
+        Hyperparameter       & Values      \\
+        \midrule
+        Layers               & 1, 2, 3     \\
+        Hidden channels      & 16, 32, 64  \\
+        Dropout probability  & 0, 0.3, 0.6 \\
+        Activation function  & ReLU, PReLU \\
+        Aggregation function & mean, max   \\
+        \bottomrule
+    \end{tabular}};
+}
+
+\uncover<4>{
+    \node[fill=blue!20] at (14.5, 8.75) {
+\begin{tabular}{lc}
+        \toprule
+        Objective   & Optimisation \\
+        \midrule
+        Log-Loss    & min          \\
+        Brier-Score & min          \\
+        ROC-AUC     & max          \\
+        Prec 0.1    & max          \\
+        \bottomrule
+    \end{tabular}};
+}
+
+\uncover<5>{
+    \node at (1.5, 4) {7 source graphs};
+    \node at (7, 5.5) {139 tasks};
+    \node at (10, 8) {108 setups for each task};
+    \node at (14.5, 9) {15012 true performance evaluations (labels)};
+}
+
+\node[ rotate=90, anchor=north, minimum width=18ex, fill=yellow!20] at (19, 8.5) {\small{avg. node degree}};
+\node[ rotate=90, anchor=north, minimum width=18ex, fill=yellow!20] at (19.75, 8.5) {\small{number of nodes}};
+\node[ rotate=90, anchor=north, minimum width=18ex, fill=orange!20] at (20.5, 8.5) {\small{class ratio}};
+\node[ rotate=90, anchor=north, minimum width=18ex, fill=orange!20] at (21.25, 8.5) {\small{homophilly}};
+\node[ rotate=90 ,anchor=north, minimum width=18ex, fill=green!20] at (22, 8.5) {\small{dropout}};
+\node[ rotate=90 ,anchor=north, minimum width=18ex, fill=green!20] at (22.75, 8.5) {\small{number of layers}};
+\node[ rotate=90 ,anchor=north, minimum width=18ex, fill=blue!20] at (23.5, 8.5) {\small{log-loss}};
+\node[ rotate=90 ,anchor=north, minimum width=18ex, fill=blue!20] at (24.25, 8.5) {\small{ROC-AUC}};
+
+\newcommand{\row}[9]{
+\node[ align=left, anchor=west, minimum width=3ex] at (19, #9) {\small{#1}};
+\node[ align=left, anchor=west, minimum width=3ex] at (19.75, #9) {\small{#2}};
+\node[ align=left, anchor=west, minimum width=3ex] at (20.5, #9) {\small{#3}};
+\node[ align=left, anchor=west, minimum width=3ex] at (21.25, #9) {\small{#4}};
+\node[ align=left, anchor=west, minimum width=3ex] at (22, #9) {\small{#5}};
+\node[ align=left, anchor=west, minimum width=3ex] at (22.75, #9) {\small{#6}};
+\node[ align=left, anchor=west, minimum width=3ex] at (23.5, #9) {\small{#7}};
+\node[ align=left, anchor=west, minimum width=3ex] at (24.25, #9) {\small{#8}};
+}
+\row{2}{6}{1/3}{1}{0.2}{2}{0.2}{0.7}{5.5}
+\row{2}{6}{1/3}{1}{0.3}{1}{0.4}{0.6}{2}
+\row{2}{6}{1/3}{0.3}{0.1}{3}{0.3}{0.6}{-4}
+\end{tikzpicture}

@@ -1,0 +1,289 @@
+\documentclass[10pt, 169]{beamer}
+
+\usepackage{polyglossia}
+\usepackage{csquotes}
+\usepackage{bm}
+\usepackage{datetime}
+\usepackage{fontspec}
+\usepackage{microtype}
+\usepackage{color}
+\usepackage{url}
+\usepackage{pgfplots}
+\usepackage{hyperref}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{subcaption}
+\usepackage[backend=biber,style=iso-authoryear,sortlocale=en_US,autolang=other,bibencoding=UTF8]{biblatex}
+\usepackage{booktabs}
+\usepackage{graphics}
+\usepackage{pifont}
+\usepackage{ulem}
+\usepackage{tikz}
+
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{arrows,automata,shapes,calc, patterns, backgrounds}
+
+\addbibresource{zotero.bib}
+
+\setdefaultlanguage{english}
+\setmainfont{TeX Gyre Termes}
+\usetheme{Boadilla}
+\usecolortheme{crane}
+\setbeamertemplate{title page}[default][rounded=true,shadow=false]
+\setbeamertemplate{section in toc}[ball unnumbered]
+\setbeamertemplate{bibliography item}{}
+
+\hypersetup{
+	pdfencoding=auto,
+	unicode=true,
+	citecolor=green,
+	filecolor=blue,
+	linkcolor=red,
+	urlcolor=blue
+}
+
+\makeatletter
+\newcommand*{\currentSection}{\@currentlabelname}
+\makeatother
+
+\newcommand{\mathmat}{\ensuremath{\mathbf}}
+
+\title[DDny 2023]
+{
+	Which Graph Properties Affect GNN Performance for a Given Downstream Task?
+}
+
+\newdate{presentation}{10}{11}{2023}
+\date[November 2023]{Doktorandské dny KM FJFI, \displaydate{presentation}}
+
+\author[Procházka et al.]{
+	Pavel Procházka\inst{1} \and
+	Michal Mareš\inst{1,2} \and
+	\underline{Marek Dědič}\inst{1,2}
+}
+\institute[Cisco \& CTU]{
+	\inst{1}Cisco Systems, Inc. \and
+	\inst{2}Czech Technical University in Prague
+}
+
+% Title card
+\AtBeginSection[]{
+	\begin{frame}
+	\vfill
+	\centering
+	\begin{beamercolorbox}[sep = 8pt,center,shadow = true,rounded = true]{title}
+		\usebeamerfont{title}\insertsectionhead\par%
+	\end{beamercolorbox}
+	\vfill
+\end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Motivation -- Representation by Graph}
+	{\scalebox{0.45}{\input{images/motivation}}} 
+\end{frame}
+
+\begin{frame}
+	\frametitle{Graph Composition -- Naive Approach}
+	{\scalebox{0.45}{\input{images/approach}}} 
+\end{frame}
+
+\begin{frame}
+	\frametitle{Graph Composition -- Proposed Approach}
+	{\scalebox{0.8}{\input{images/proposed_approach}}}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hyper-Parameter Tuning}
+	{\scalebox{0.8}{\input{images/hyperpar_description}}}
+\end{frame}
+
+
+
+\begin{frame}
+	\frametitle{Dataset Construction}
+	\scalebox{0.45} {\input{images/dataset_description}}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Experiment Setup -- Dataset Construction}
+	\scalebox{0.45}
+	{\input{images/experiment_design}}
+	%{\input{images/datasets.tex}}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Meta-Model Generalisation Capability -- Experiment Setup}	 
+	\begin{enumerate}
+		\item Random split of the 139 tasks to train and test sets with sizes 93 and 46
+		\item Label given by the best performance of each task over all hyper-parameters
+		\item Random forest regression model trained on graph properties to fit true label
+		\item Measuring RMSE and Spearman correlation between prediction and true label
+		\item Performance on test set indicating generalization ability
+		\item Relating	graph properties in terms of feature interpretation of the model
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Meta-Model Generalisation Capability -- Results}
+	\scalebox{0.9} {\includegraphics{images/gnn_random_split_prec_logloss.pdf}}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Interpretation -- Impact on Log Loss}
+	\scalebox{1} {\includegraphics[width=0.9\linewidth]{images/shap_logloss.pdf}}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hyper-Parameter Tuning Experiment Setup}
+	\input{images/hyperpar_setup}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hyper-Parameter Tuning Results}
+	\scalebox{1} {\includegraphics[width=0.7\linewidth]{images/hyperpar_tuning_small_single.pdf}}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hyper-Parameter Tuning Results}
+	\scalebox{1} {\includegraphics[width=0.9\linewidth]{images/hyperpar_tuning_small1.pdf}}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hyper-Parameter Tuning Results}
+	\scalebox{1} {\includegraphics[width=0.9\linewidth]{images/hyperpar_tuning_small2.pdf}}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hyper-Parameter Tuning Results}
+	\scalebox{1} {\includegraphics[width=0.9\linewidth]{images/hyperpar_tuning_small3.pdf}}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Conclusions}
+	\begin{itemize}
+		\item Proposed a method for identification of important graph
+dataset properties using meta-model
+		\item Hyper-parameter tuning method
+based on the meta-model
+		\item Experimental validation of meta-model generalization capability
+		\item Evaluated importance of graph properties and their impact on GNN performance
+		\item Very promissing results of hyper-parameter search method
+	\end{itemize}
+\end{frame}
+
+%\begin{frame}{Motivation}
+%	\begin{itemize}
+%		\item In Cisco, we perform node classification on large graphs to identify malicious domains
+%		\begin{itemize}
+%			\item Currently simple, scalable models
+%		\end{itemize}
+%		\item State of the art: GNNs
+%		\begin{itemize}
+%			\item Powerful but computationally demanding
+%			\item Do not scale to our data (at reasonable cost)
+%		\end{itemize}
+%		\item Suggested solution: compressing the input graph
+%	 \end{itemize}
+%\end{frame}
+%
+%\begin{frame}{Main idea}
+%	 \input{images/coarsening-illustration}
+%\end{frame}
+%
+%\begin{frame}{Details}
+%	 \begin{itemize}
+%		 \item Base model $\to$ posterior for all nodes
+%		 \item Similarity measure
+%		 \item Edge contraction $\to$ graph sequence
+%		 \item GNN on each graph with label propagation
+%	 \end{itemize}
+%	 \vspace{1cm}
+%	 \scalebox{0.75}{\input{images/graph-sequence}}
+%\end{frame}
+%
+%\begin{frame}{Complexity performance trade-off}
+%	\input{images/complexity-performance}
+%\end{frame}
+%
+%\begin{frame}{Complexity}
+%	\begin{itemize}
+%		\item Usually time \& memory complexity
+%		 \item In business, time translates to cost
+%		 \begin{itemize}
+%			 \item More interpretable
+%			 \item Monthly budget \$100, AWS EKS costs \$0.33/hour
+%			 \item Therefore daily run can take 10 hours $\to$ select graph size accordingly
+%		 \end{itemize}
+%	 \end{itemize}
+%\end{frame}
+%
+%\begin{frame}
+%	\frametitle{Edge contraction induced hierarchical tree}
+%	\centerline{\scalebox{0.75}{\input{images/graph-seq-uncover}}}
+%	\centerline{\scalebox{0.75}{\input{images/tree-clustering}}}
+%\end{frame}
+%
+%\begin{frame}
+%	\frametitle{Shared prediction induced performance upper bound}
+%	 \centering{\scalebox{1.2}{\input{images/upper-bound}}}
+%\end{frame}
+%
+%\begin{frame}{Experiment Setup}
+%	 \begin{itemize}
+%		 \item Base model: logistic regression
+%		 \item Similarity measure: KL divergence
+%		 \item GNN: 2-layer GCN
+%		 \item Dataset: Cora
+%	 \end{itemize}
+%\end{frame}
+%
+%\begin{frame}{Comparison of Performance Given by Probability Similarities}
+%	 \input{images/cora-similarities}
+%\end{frame}
+%
+%\begin{frame}{Conclusions \& Future Work}
+%	 \begin{itemize}
+%		 \item Conclusions
+%		 \begin{itemize}
+%			 \item Performance-complexity trade-off
+%			 \begin{itemize}
+%				 \item Ability to set cost limit for running the algorithm
+%			 \end{itemize}
+%			 \item Hierarchical tree as a byproduct
+%			 \item Computationally cheap upper bound
+%			 \item Transfer learning: like using other hyperparameters
+%			 \begin{itemize}
+%				 \item Assuming the data does not change significantly
+%			 \end{itemize}
+%		 \end{itemize}
+%		 
+%		 \item Future Work
+%		 \begin{itemize}
+%			 \item Run on more datasets
+%			 \item Run on Cisco datasets
+%			 \item Investigate the validity of many ad-hoc choices in the algorithm
+%		 \end{itemize}
+%		 
+%	 \item More details can be found in the paper: \cite{prochazka_scalable_2022}
+%	 \item My related work presented at ECML: \cite{dedic_adaptive_2022}
+%	 \end{itemize}
+%\end{frame}
+
+%\begin{frame}[shrink=12]{Bibliography}
+	%\printbibliography
+%\end{frame}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\end{document}

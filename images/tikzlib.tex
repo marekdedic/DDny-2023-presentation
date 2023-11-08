@@ -1,0 +1,62 @@
+\newcommand\user[2]{
+	\begin{scope}[xshift=#1cm, yshift=#2cm]
+		\clip (0, 0) circle (0.5);
+		\fill[black] (0, 0) circle (0.5);
+		\fill[white] (0, 0) circle (0.48);
+		\fill[black] (0, -0.675) circle (0.4);
+		\fill[black] (0, 0.075) circle (0.24);
+	\end{scope}
+}
+
+\newcommand\ip[2]{
+	\begin{scope}[xshift=#1cm, yshift=#2cm]
+		%\rectangle[fill=black, rounded corners=0.2cm] (-0.5, -0.7) -- (0.5, 0.7);
+		\draw[fill=black, thick, rounded corners=0.15cm] (-0.3, -0.5) rectangle (0.3, 0.5);
+		\draw[fill=white] (0, -0.3) circle (0.1);
+		\draw[fill=white, rounded corners=0.07cm] (-0.2, -0.1) rectangle (0.2, 0.0);
+		\draw[fill=white, rounded corners=0.07cm] (-0.2, 0.1) rectangle (0.2, 0.2);
+		\draw[fill=white, rounded corners=0.07cm] (-0.2, 0.3) rectangle (0.2, 0.4);
+	\end{scope}
+}
+
+\newcommand\www[2]{
+	\begin{scope}[xshift=#1cm, yshift=#2cm]
+		\clip (0, 0) circle (0.5);
+		\fill[yellow!65!black] (0, 0) circle (0.5);
+		\fill[white] (-0.5, -0.175) rectangle (0.5,0.175);
+		\node[text=yellow!65!black] at (0,0) {www};
+	\end{scope}
+}
+
+\newcommand\malwww[2]{
+	\begin{scope}[xshift=#1cm, yshift=#2cm]
+		\clip (0, 0) circle (0.5);
+		\fill[red!65!black] (0, 0) circle (0.5);
+		\fill[white] (-0.5, -0.175) rectangle (0.5,0.175);
+		\node[text=yellow!65!black] at (0,0) {www};
+	\end{scope}
+}
+
+\newcommand\wwwline[3]{
+	\node[circle, minimum size=1.1cm] (#3) at (0, #1) {};
+	\www{0}{#1}
+	\node[text width=50mm, align=right] at (-5, #1) {#2};
+}
+
+\newcommand\malwwwline[3]{
+	\node[circle, minimum size=1.1cm] (#3) at (0, #1) {};
+	\malwww{0}{#1}
+	\node[text width=50mm, align=right] at (-5, #1) {#2};
+}
+
+\newcommand\userline[2]{
+	\node[circle, minimum size=1.1cm] (#2) at (5, #1) {};
+	\user{5}{#1}
+	\node[text width=50mm, align=left] at (10, #1) {#2};
+}
+
+\newcommand\ipline[3]{
+	\node[circle, minimum size=1.1cm] (#3) at (5, #1) {};
+	\ip{5}{#1}
+	\node[text width=50mm, align=left] at (10, #1) {#2};
+}
